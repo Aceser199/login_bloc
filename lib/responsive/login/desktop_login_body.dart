@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:login_bloc/blocs/bloc.dart';
-
-final bloc = Bloc();
+import 'package:login_bloc/blocs/provider.dart';
 
 class DesktopLoginBody extends StatelessWidget {
   const DesktopLoginBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -16,9 +17,9 @@ class DesktopLoginBody extends StatelessWidget {
         margin: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            emailField(),
-            passwordField(),
-            const SizedBox(height: 20.0),
+            emailField(bloc),
+            passwordField(bloc),
+            const SizedBox(height: 40.0),
             submitButton(),
           ],
         ),
@@ -26,7 +27,7 @@ class DesktopLoginBody extends StatelessWidget {
     );
   }
 
-  Widget emailField() {
+  Widget emailField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.email,
       builder: (context, snapshot) => TextField(
@@ -41,7 +42,7 @@ class DesktopLoginBody extends StatelessWidget {
     );
   }
 
-  Widget passwordField() {
+  Widget passwordField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.password,
       builder: (context, snapshot) => TextField(
