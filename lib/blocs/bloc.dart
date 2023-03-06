@@ -6,8 +6,12 @@ class Bloc with Validators {
   final _passwordController = StreamController<String>();
 
   // Add data to stream
-  Stream<String> get email => _emailController.stream;
-  Stream<String> get password => _passwordController.stream;
+  Stream<String> get email => _emailController.stream
+      .transform(validateRequiredField)
+      .transform(validateEmail);
+  Stream<String> get password => _passwordController.stream
+      .transform(validateRequiredField)
+      .transform(validatePassword);
 
   // Change data
   Function(String) get changeEmail => _emailController.sink.add;
@@ -18,3 +22,7 @@ class Bloc with Validators {
     _passwordController.close();
   }
 }
+
+// single Global instance of the Bloc
+// Possibly OK for small apps
+final bloc = Bloc();
