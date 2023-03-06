@@ -23,6 +23,6 @@ class Bloc with Validators {
   }
 }
 
-// single Global instance of the Bloc
+// Single Global instance of the Bloc
 // Possibly OK for small apps
-final bloc = Bloc();
+// final bloc = Bloc();
