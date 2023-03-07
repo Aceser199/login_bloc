@@ -60,7 +60,7 @@ class TabletLoginBody extends StatelessWidget {
     return StreamBuilder(
       stream: bloc.submitValid,
       builder: (context, snapshot) => ElevatedButton(
-        onPressed: snapshot.hasData ? () {} : null,
+        onPressed: snapshot.hasData ? bloc.submit : null,
         child: const Text('Submit'),
       ),
     );

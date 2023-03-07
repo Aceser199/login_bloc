@@ -30,7 +30,8 @@ class DesktopLoginBody extends StatelessWidget {
   Widget emailField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.email,
-      builder: (context, snapshot) => TextField(
+      builder: (context, snapshot) => TextFormField(
+        initialValue: bloc.emailValue,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           hintText: 'your@example.com',
@@ -45,7 +46,8 @@ class DesktopLoginBody extends StatelessWidget {
   Widget passwordField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.password,
-      builder: (context, snapshot) => TextField(
+      builder: (context, snapshot) => TextFormField(
+        initialValue: bloc.passwordValue,
         obscureText: true,
         decoration: InputDecoration(
           label: const Text('Password'),
@@ -60,7 +62,7 @@ class DesktopLoginBody extends StatelessWidget {
     return StreamBuilder(
       stream: bloc.submitValid,
       builder: (context, snapshot) => ElevatedButton(
-        onPressed: snapshot.hasData ? () {} : null,
+        onPressed: snapshot.hasData ? bloc.submit : null,
         child: const Text('Submit'),
       ),
     );
