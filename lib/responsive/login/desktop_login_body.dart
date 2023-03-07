@@ -19,8 +19,8 @@ class DesktopLoginBody extends StatelessWidget {
           children: [
             emailField(bloc),
             passwordField(bloc),
-            const SizedBox(height: 40.0),
-            submitButton(),
+            const SizedBox(height: 20.0),
+            submitButton(bloc),
           ],
         ),
       ),
@@ -56,10 +56,13 @@ class DesktopLoginBody extends StatelessWidget {
     );
   }
 
-  Widget submitButton() {
-    return ElevatedButton(
-      onPressed: () {},
-      child: const Text('Submit'),
+  Widget submitButton(Bloc bloc) {
+    return StreamBuilder(
+      stream: bloc.submitValid,
+      builder: (context, snapshot) => ElevatedButton(
+        onPressed: snapshot.hasData ? () {} : null,
+        child: const Text('Submit'),
+      ),
     );
   }
 }

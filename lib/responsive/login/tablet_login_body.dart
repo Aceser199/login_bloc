@@ -11,7 +11,7 @@ class TabletLoginBody extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login Tablet'),
+        title: const Text('Login'),
       ),
       body: Container(
         margin: const EdgeInsets.all(20.0),
@@ -20,7 +20,7 @@ class TabletLoginBody extends StatelessWidget {
             emailField(bloc),
             passwordField(bloc),
             const SizedBox(height: 20.0),
-            submitButton(),
+            submitButton(bloc),
           ],
         ),
       ),
@@ -56,10 +56,13 @@ class TabletLoginBody extends StatelessWidget {
     );
   }
 
-  Widget submitButton() {
-    return ElevatedButton(
-      onPressed: () {},
-      child: const Text('Submit'),
+  Widget submitButton(Bloc bloc) {
+    return StreamBuilder(
+      stream: bloc.submitValid,
+      builder: (context, snapshot) => ElevatedButton(
+        onPressed: snapshot.hasData ? () {} : null,
+        child: const Text('Submit'),
+      ),
     );
   }
 }
