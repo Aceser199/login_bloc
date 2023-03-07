@@ -30,7 +30,8 @@ class TabletLoginBody extends StatelessWidget {
   Widget emailField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.email,
-      builder: (context, snapshot) => TextField(
+      builder: (context, snapshot) => TextFormField(
+        initialValue: bloc.emailValue,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           hintText: 'your@example.com',
@@ -45,7 +46,8 @@ class TabletLoginBody extends StatelessWidget {
   Widget passwordField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.password,
-      builder: (context, snapshot) => TextField(
+      builder: (context, snapshot) => TextFormField(
+        initialValue: bloc.passwordValue,
         obscureText: true,
         decoration: InputDecoration(
           label: const Text('Password'),
