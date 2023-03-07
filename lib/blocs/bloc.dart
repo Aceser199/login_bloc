@@ -18,8 +18,10 @@ class Bloc with Validators {
       Rx.combineLatest2(email, password, (e, p) => true);
 
   // Retrieve data from stream
-  String get emailValue => _emailController.value;
-  String get passwordValue => _passwordController.value;
+  String get emailValue =>
+      _emailController.hasValue ? _emailController.value : '';
+  String get passwordValue =>
+      _passwordController.hasValue ? _passwordController.value : '';
 
   // Change data
   Function(String) get changeEmail => _emailController.sink.add;
